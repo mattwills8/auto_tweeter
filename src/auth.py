@@ -30,7 +30,7 @@ def auth(APP_KEY, APP_SECRET):
     F_OAUTH_TOKEN_SECRET = final_step['oauth_token_secret']
 
     print 'AUTHORISED'
-    print 'OAUTH TOKEN: ' + F_OAUTH_TOKEN
-    print 'OAUTH TOKEN SECRET: ' + F_OAUTH_TOKEN_SECRET
+    print 'ACCESS TOKEN: ' + F_OAUTH_TOKEN
+    print 'ACCESS TOKEN SECRET: ' + F_OAUTH_TOKEN_SECRET
 
 auth(APP_KEY,APP_SECRET)
