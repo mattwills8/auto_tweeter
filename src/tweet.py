@@ -1,9 +1,14 @@
 import argparse
-
 from methods.sandbox import *
 from src.methods.auth import *
 from src.methods.promote_tweets import *
 
+APP_KEY = os.getenv('APP_KEY', '')
+APP_SECRET = os.getenv('APP_SECRET', '')
+ACCESS_TOKEN = os.getenv('ACCESS_TOKEN', '')
+ACCESS_TOKEN_SECRET = os.getenv('ACCESS_TOKEN_SECRET', '')
+
+ACCOUNT_ID = os.getenv('ACCOUNT_ID', '')
 
 def main(sandbox_mode):
 
@@ -29,9 +34,9 @@ def main(sandbox_mode):
         print 'Available campaigns: '
         print [campaign['campaign_name'] for campaign in get_campaigns_info(client, account_id, draft=False)]
 
-        copy_list = [x for x in map(str, raw_input('Input tweet copy: ').split(";"))]
+        copy_list = [x for x in map(str, raw_input('Input tweet copy (separate by ;): ').split(";"))]
         card_url = str(raw_input('Select card URL: '))
-        campaign_names = [x for x in map(str, raw_input('Select campaign names:').split(";"))]
+        campaign_names = [x for x in map(str, raw_input('Select campaign names (separate by ;):').split(";"))]
 
         tweet_ids = [create_tweet_with_card(client, account_id, card_url=card_url, copy=copy)['data']['id_str'] for copy
                      in copy_list]
@@ -49,3 +54,4 @@ if __name__ == '__main__':
     parser.add_argument('--sandbox', help='Sandbox mode', action='store_true') #why does store_true seem to make it false?
     args = parser.parse_args()
     main(args.sandbox)
+

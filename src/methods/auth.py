@@ -51,4 +51,3 @@ def auth_needed(access_token, access_token_secret):
         return True
     else:
         return False
-
