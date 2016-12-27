@@ -20,6 +20,8 @@ def video_app_card(client, account_id, name, video_uuid, app_country_code, app_c
     :return: JSON response from card creation
     """
 
+    endpoint = 'https://ads-api.twitter.com/1/accounts/{}/cards/video_app_download'.format(account_id)
+
     method = 'POST'
     params = {
         'name': name,
