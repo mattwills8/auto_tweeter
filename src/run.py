@@ -12,6 +12,8 @@ ACCOUNT_ID = os.getenv('ACCOUNT_ID', '')
 
 def main(sandbox_mode):
 
+    #authorisation ----------------------------------
+
     if auth_needed(ACCESS_TOKEN, ACCESS_TOKEN_SECRET):
         print "Need to log in..."
         [access_token, access_token_secret] = auth(APP_KEY, APP_SECRET)
@@ -24,6 +26,8 @@ def main(sandbox_mode):
 
     account_id = ACCOUNT_ID
 
+    #--------------------------------------------------
+
     if sandbox_mode:
         account_id = create_sandbox_account(client)
 
@@ -35,7 +39,9 @@ def main(sandbox_mode):
         print [campaign['campaign_name'] for campaign in get_campaigns_info(client, account_id, draft=False)]
 
         copy_list = [x for x in map(str, raw_input('Input tweet copy (separate by ;): ').split(";"))]
+
         card_url = str(raw_input('Select card URL: '))
+
         campaign_names = [x for x in map(str, raw_input('Select campaign names (separate by ;):').split(";"))]
 
         tweet_ids = [create_tweet_with_card(client, account_id, card_url=card_url, copy=copy)['data']['id_str'] for copy
